@@ -16,3 +16,4 @@ app.listen(port,() => {
     console.log(`server running at http://localhost:${port}/`);
 
 }); 
+// i am dealing with the issue in which i am not able to run the server with the help of nodemon  tommorrow i will try to resolve the issue and run the server with the help of nodemon
