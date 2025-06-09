@@ -48,7 +48,7 @@ app.delete('/teas/:id', (req, res) => {
         return res.status(404).send('Tea not found');
 
     }
-    teaData.slice(teaIndex, 1);
+    teaData.splice(teaIndex, 1);
     return res.status(204).send(); // No content
 
 })
