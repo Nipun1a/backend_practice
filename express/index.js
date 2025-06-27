@@ -1,6 +1,9 @@
+require('dotenv').config(); // Load environment variables from .env file
+// Import necessary modules
+import 'dotenv/config'; // Ensure dotenv is configured
 import express from 'express';
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000; // Use PORT from .env or default to 3000
 app.use(express.json());
 // app.use(express.urlencoded({ extended: true })); // Uncomment if you need to parse URL-encoded bodies
 // Middleware to log request details
