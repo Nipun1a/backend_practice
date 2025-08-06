@@ -13,11 +13,11 @@
     <p class = "text-center">Current time: <%= new Date().toLocaleTimeString() %></p>
     <div class="flex flex-col items-center justify-center mt-10">
         <h2 class="text-2xl mb-4">User Registration Form</h2>
-    <form action="">
-        <input type = "text" placeholder="enter your name" class="border-2 border-gray-300 rounded p-2">
-        <input type = "text" placeholder="enter your emailid" class="border-2 border-gray-300 rounded p-2">
-        <input type = "text" placeholder="enter your password" class="border-2 border-gray-300 rounded p-2">
-        <input type = "url" placeholder="enter the image URL" class="border-2 border-gray-300 rounded p-2">
+    <form action="/create" method="post"class="flex flex-col space-y-4">
+        <input type = "text" placeholder="enter your name"name="name" class="border-2 border-gray-300 rounded p-2">
+        <input type = "text" placeholder="enter your emailid"name="email" class="border-2 border-gray-300 rounded p-2">
+        <input type = "text" placeholder="enter your password"name="password" class="border-2 border-gray-300 rounded p-2">
+        <input type = "url" placeholder="enter the image URL"name="image" class="border-2 border-gray-300 rounded p-2">
         <button type="submit" class="bg-blue-500 text-white p-2 rounded">Submit</button>
     </form>
 </div>

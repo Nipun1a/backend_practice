@@ -12,19 +12,23 @@
     <div>
         <div class=" color: black bg-gray-100 p-4 rounded-lg shadow-md">
             <h1 class="text-2xl font-bold mb-2">User Details</h1>
-        <p>yug</p>
-        <p>example@gmail.com</p>
-        <a href="/edit" class="text-blue-500 underline">Edit User</a>
-        <a href="/delete" class="text-red-500 underline ml-4">Delete User</a>
+            <% if users.length ===0 {
+                %> 
+                <p class="text-gray-500">No users found.</p>
+            <% } %>
+            }
+            <% users.forEach(function(user) { %>
+                <div class="mb-4 p-4 border border-gray-300 rounded-lg">
+                    <p><strong>Name:</strong> <%= user.name %></p>
+                    <p><strong>Email:</strong> <%= user.email %></p>
+                    <p><strong>Password:</strong> <%= user.password %></p>
+                    <img src="<%= user.image %>" alt="User Image" class="w-32 h-32 object-cover rounded">
+                    <a href="/edit/<%= user._id %>" class="text-blue-500 underline">Edit</a>
+                    <a href="/delete/<%= user._id %>" class="text-red-500 underline ml-2">Delete</a>
+
+                </div>
+            <% }) %>
+        </div>
     </div>
-    <div>
-        <div class=" color: black bg-gray-100 p-4 rounded-lg shadow-md">
-            
-        <p>arya</p>
-        <p>example2@gmail.com</p>
-        <a href="/edit" class="text-blue-500 underline">Edit User</a>
-        <a href="/delete" class="text-red-500 underline ml-4">Delete User</a>
-    </div>
-    
 </body>
 </html>
