@@ -24,8 +24,19 @@ app.get('/read', async function (req, res) {
 app.get('/delete/:id', async function(req,res) {
    let users = await userModel.findOneAndDelete({_id: req.params.id});
    res.redirect("/read"); // Redirect to the read page after deletion
-}
-)
+});
+
+app.get("/edit/:id", async function(req, res){
+   let user = await userModel.findById(req.params.id);
+   res.render("edit", { user });
+});
+
+app.post("/update/:id", async function(req, res){
+   let {name, email, password, image} = req.body;
+   await userModel.findOneAndUpdate({_id: req.params.id}, {name, email, password, image});
+   res.redirect("/read"); // Only redirect, do not render
+});
+
 
 app.post('/create', async function (req, res) {
    try {

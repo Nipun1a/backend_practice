@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit User</title>
+    <link rel="stylesheet" href="/stylesheet/styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body>
+    <h1>Update User</h1>
+    <form action="/update/<%= user._id %>" method="POST">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" value="<%= user.name %>" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" value="<%= user.email %>" required>
+        <br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" value="<%= user.password %>" required>
+        <br>
+        <label for="image">Image URL:</label>
+        <input type="text" id="image" name="image" value="<%= user.image %>" required>
+        <br>
+        <button type="submit">Update User</button>
+    </form>
+</body>
+</html>
