@@ -1,6 +1,58 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const userModel = require('./models/user');
+
+// Middleware
+app.set('view engine', 'ejs');
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+// Routes
+app.get('/', function (req, res) {
+   res.render('index');
+});
+
+app.get('/read', async function (req, res) {
+   let users = await userModel.find();
+   res.render("read", { users });
+});
+
+app.get('/delete/:id', async function(req,res) {
+   await userModel.findOneAndDelete({_id: req.params.id});
+   res.redirect("/read");
+});
+
+app.get("/edit/:id", async function(req, res){
+   let user = await userModel.findById(req.params.id);
+   res.render("edit", { user });
+});
+
+app.post("/update/:id", async function(req, res){
+   let {name, email, password, image} = req.body;
+   await userModel.findOneAndUpdate({_id: req.params.id}, {name, email, password, image});
+   res.redirect("/read");
+});
+
+app.post('/create', async function (req, res) {
+   try {
+      let {name, email, password, image} = req.body;
+      await userModel.create({ name, email, password, image });
+      res.redirect('/read');
+   } catch (err) {
+      res.status(500).send('Error creating user');
+   }
+});
+
+// Don't use app.listen for Vercel
+module.exports = app;
+
+// Uncomment the following lines if you want to run this locally and this does not run on vercel it is for the learning purpose on local machine it does not run  on vercel because vercel does not use app.listen and it uses serverless functions
+
+/*const express = require('express');
+const app = express();
+const path = require('path');
 const userModel = require('./models/user'); // Make sure this path and file exist
 
 app.set('view engine', 'ejs');
@@ -57,3 +109,4 @@ app.post('/create', async function (req, res) {
 app.listen(3001, function() {
     console.log('Server is running on port 3001'); // this is working on the port http://localhost:3001
 });
+*/
